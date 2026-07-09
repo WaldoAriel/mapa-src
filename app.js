@@ -155,9 +155,12 @@ var ZONAS_CLICABLES = [
         map.setMinZoom(map.getZoom() - 2);
         map.setMaxZoom(CONFIG.zoomMax);
 
-        var markers = agregarMarcadores(map);
+        var result = agregarMarcadores(map);
+        var markers = result.markers;
+        var clusterGroup = result.clusterGroup;
+        map.addLayer(clusterGroup);
         var zonas = agregarZonas(map);
-        construirSidebar(map, markers, sidebar, sidebarToggle);
+        construirSidebar(map, markers, clusterGroup, sidebar, sidebarToggle);
 
         if (zonas.length > 0) {
             zonas[0].openPopup();
@@ -218,6 +221,7 @@ var ZONAS_CLICABLES = [
    ---------------------------------------------------------------- */
 function agregarMarcadores(map) {
     var markers = [];
+    var clusterGroup = L.markerClusterGroup();
 
     PUNTOS_DE_INTERES.forEach(function (punto, index) {
         var icono = L.divIcon({
@@ -229,7 +233,6 @@ function agregarMarcadores(map) {
         });
 
         var marcador = L.marker([punto.y, punto.x], { icon: icono })
-            .addTo(map)
             .bindPopup(
                 '<div class="popup-contenido">' +
                 '<span class="popup-categoria">' + punto.categoria + '</span>' +
@@ -241,9 +244,10 @@ function agregarMarcadores(map) {
 
         marcador._poiIndex = index;
         markers.push(marcador);
+        clusterGroup.addLayer(marcador);
     });
 
-    return markers;
+    return { markers: markers, clusterGroup: clusterGroup };
 }
 
 /* ----------------------------------------------------------------
@@ -282,7 +286,7 @@ function agregarZonas(map) {
 /* ----------------------------------------------------------------
    SIDEBAR — LISTA DE PUNTOS
    ---------------------------------------------------------------- */
-function construirSidebar(map, markers, sidebarEl, toggleEl) {
+function construirSidebar(map, markers, clusterGroup, sidebarEl, toggleEl) {
     var lista = document.getElementById('poi-lista');
 
     PUNTOS_DE_INTERES.forEach(function (punto, index) {
@@ -298,11 +302,9 @@ function construirSidebar(map, markers, sidebarEl, toggleEl) {
         item.addEventListener('click', function () {
             var marker = markers[index];
 
-            map.setView(marker.getLatLng(), Math.max(map.getZoom(), 1));
-
-            if (marker.getPopup()) {
+            clusterGroup.zoomToShowLayer(marker, function () {
                 marker.openPopup();
-            }
+            });
 
             sidebarEl.classList.remove('sidebar--abierta');
             toggleEl.classList.remove('sidebar-toggle--oculto');
