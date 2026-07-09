@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Turístico — Santa Rosa de Calamuchita</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <div id="loading">
+        <div class="loading-spinner"></div>
+        <p>Cargando mapa...</p>
+    </div>
+
+    <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Abrir panel">☰</button>
+
+    <aside id="sidebar" class="sidebar--cerrada">
+        <div class="sidebar-header">
+            <h2>Puntos de interés</h2>
+            <button id="sidebar-close" class="sidebar-close" aria-label="Cerrar panel">✕</button>
+        </div>
+        <div class="sidebar-body">
+            <ul id="poi-lista" class="poi-lista"></ul>
+        </div>
+        <div class="sidebar-footer">
+            <p class="sidebar-ayuda">Hacé clic en un punto para verlo en el mapa</p>
+        </div>
+    </aside>
+
+    <div id="map"></div>
+
+    <div id="coords" class="coords-display">x: 0 &nbsp; y: 0</div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
