@@ -298,7 +298,7 @@ function construirSidebar(map, markers, sidebarEl, toggleEl) {
         item.addEventListener('click', function () {
             var marker = markers[index];
 
-            map.setView(marker.getLatLng(), Math.max(map.getZoom(), 2));
+            map.setView(marker.getLatLng(), Math.max(map.getZoom(), 1));
 
             if (marker.getPopup()) {
                 marker.openPopup();
