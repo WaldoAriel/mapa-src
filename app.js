@@ -29,6 +29,7 @@ var PUNTOS_DE_INTERES = [
         x: 3066, y: 3908,
         nombre: 'Plaza de la Familia',
         desc: 'Es un nuevo y moderno espacio público ubicado junto al río en el tradicional sector del Balneario Santa Rita. Es una excelente opción para el disfrute de grandes y chicos',
+        img: 'assets/fotos/plaza-f.jpg',
         emoji: '\u{1F333}',
         categoria: 'plaza',
     },
@@ -52,6 +53,14 @@ var PUNTOS_DE_INTERES = [
         desc: 'Paseo hermoso a la orilla del río. Perfecto para caminar, andar en bici o matear al atardecer.',
         emoji: '\u{1F305}',
         categoria: 'naturaleza',
+    },
+    {
+        x: 3025, y: 3213,
+        nombre: 'Puente Colgante',
+        desc: 'El Puente Colgante fué inaugurado en 1959. Construido por los vecinos de Villa Santarelli con el apoyo del ingeniero Luis Hugues, quien donó los planos y parte de los materiales.',
+        img: 'assets/fotos/p-colgante.jpg',
+        emoji: '\u{1F309}',
+        categoria: 'cultura',
     },
     {
         x: 3390, y: 2660,
@@ -78,6 +87,7 @@ var PUNTOS_DE_INTERES = [
         x: 3313, y: 3158,
         nombre: 'Mirador del Valle',
         desc: 'Vista panorámica espectacular de todo el valle de Calamuchita. No te olvides la cámara.',
+        img: 'assets/fotos/mirador.jpg',
         emoji: '🔭',
         categoria: 'mirador',
     },
@@ -241,6 +251,9 @@ function agregarMarcadores(map) {
 
         var marcador = L.marker([punto.y, punto.x], { icon: icono })
             .bindPopup(
+                (punto.img
+                    ? '<img class="popup-img" src="' + punto.img + '" alt="' + punto.nombre + '" />'
+                    : '') +
                 '<div class="popup-contenido">' +
                 '<span class="popup-categoria">' + punto.categoria + '</span>' +
                 '<strong>' + punto.nombre + '</strong>' +
