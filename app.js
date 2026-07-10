@@ -61,10 +61,17 @@ var PUNTOS_DE_INTERES = [
         categoria: 'servicios',
     },
     {
-        x: 3317, y: 3334,
-        nombre: 'Museo Estanislao Baños',
+        x: 3308, y: 3297,
+        nombre: 'Museo de la Ciudad',
         desc: 'Nuestro museo expone una interesante visión de la historia del sitio a través de fotografías, mapas y piezas prehispánicas.',
         emoji: '\u{1F3DB}\uFE0F',
+        categoria: 'cultura',
+    },
+    {
+        x: 3275, y: 3355,
+        nombre: 'Museo de Arte Religioso Santa Rosa de Lima',
+        desc: 'Es uno de los íconos históricos y culturales de nuestra ciudad, ubicada en el centro histórico y construida en 1784. Hoy uno de los atractivos turísticos de Santa Rosa.',
+        emoji: '⛪',
         categoria: 'cultura',
     },
     {
