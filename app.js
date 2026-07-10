@@ -321,18 +321,18 @@ function construirSidebar(map, markers, clusterGroup, sidebarEl, toggleEl) {
 
         item.addEventListener('click', function () {
             var marker = markers[index];
-            var zoom = Math.max(map.getZoom(), 4);
-
-            map.setView(marker.getLatLng(), zoom);
-
-            if (marker.getPopup()) {
-                marker.openPopup();
-            }
 
             sidebarEl.classList.remove('sidebar--abierta');
             toggleEl.classList.remove('sidebar-toggle--oculto');
             document.body.classList.remove('mapa-con-sidebar');
             map.invalidateSize();
+
+            var zoom = Math.max(map.getZoom(), 3);
+            map.setView(marker.getLatLng(), zoom);
+
+            if (marker.getPopup()) {
+                marker.openPopup();
+            }
 
             var activos = document.querySelectorAll('.poi-item--activo');
             for (var i = 0; i < activos.length; i++) {

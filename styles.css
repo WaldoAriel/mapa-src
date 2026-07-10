@@ -432,8 +432,4 @@ body {
     #sidebar {
         width: 100%;
     }
-
-    .mapa-con-sidebar #map {
-        right: 100%;
-    }
 }
