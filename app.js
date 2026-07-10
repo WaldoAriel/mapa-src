@@ -321,10 +321,13 @@ function construirSidebar(map, markers, clusterGroup, sidebarEl, toggleEl) {
 
         item.addEventListener('click', function () {
             var marker = markers[index];
+            var zoom = Math.max(map.getZoom(), 4);
 
-            clusterGroup.zoomToShowLayer(marker, function () {
+            map.setView(marker.getLatLng(), zoom);
+
+            if (marker.getPopup()) {
                 marker.openPopup();
-            });
+            }
 
             sidebarEl.classList.remove('sidebar--abierta');
             toggleEl.classList.remove('sidebar-toggle--oculto');
