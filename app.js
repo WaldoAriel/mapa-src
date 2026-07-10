@@ -327,7 +327,7 @@ function construirSidebar(map, markers, clusterGroup, sidebarEl, toggleEl) {
             document.body.classList.remove('mapa-con-sidebar');
             map.invalidateSize();
 
-            var zoom = Math.max(map.getZoom(), 3);
+            var zoom = Math.max(map.getZoom(), 2);
             map.setView(marker.getLatLng(), zoom);
 
             if (marker.getPopup()) {
